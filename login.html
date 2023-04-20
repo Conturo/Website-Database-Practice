@@ -2,59 +2,21 @@
 <html>
     <head>
         <title>OpenFridge | Login</title>
-        <link rel="stylesheet" href="csl.css">
-        <audio autoplay>
-            <source src="song.mp3" type="audio/mpeg">
-        </audio>
+        <link rel="stylesheet" href="OF.css">
         <script>
             function Validate_Info_Form_Data(){
                 var errorsWithForm = false;
-                let firstName = document.getElementById("firstName").value;
-                let lastName = document.getElementById("lastName").value;
-                let emailAddress = document.getElementById("emailAddress").value;
-                let age = document.getElementById("age").value;
+                let username = document.getElementById("username").value;
+                let password = document.getElementById("password").value;
                 document.getElementById("errorMsg").innerHTML = ""
-                if (firstName==""){
-                    document.getElementById("firstName").style.border = "red solid 3px";
-                    document.getElementById("errorMsg").innerHTML += ("First name is a required field<br>");
+                if (username==""){
+                    document.getElementById("username").style.border = "maroon solid 3px";
+                    document.getElementById("errorMsg").innerHTML += ("Username is required<br>");
                     errorsWithForm = true;
                 }
-                if (lastName==""){
-                    document.getElementById("lastName").style.border = "red solid 3px";
-                    document.getElementById("errorMsg").innerHTML += ("Last name is a required field<br>");
-                    errorsWithForm = true;
-                }
-                if (emailAddress==""){
-                    document.getElementById("emailAddress").style.border = "red solid 3px";
-                    document.getElementById("errorMsg").innerHTML += ("Email address is a required field<br>");
-                    errorsWithForm = true;
-                }
-                if (age==""){
-                    document.getElementById("age").style.border = "red solid 3px";
-                    document.getElementById("errorMsg").innerHTML += ("Age is a required field<br>");
-                    errorsWithForm = true;
-                }
-                var reName = /^[a-zA-Z\s\-]{1,50}$/;
-                if (!reName.test(firstName)){
-                    document.getElementById("firstName").style.border = "red solid 3px";
-                    document.getElementById("errorMsg").innerHTML += ("First name must be less than 50 characters and consist of letters, spaces, and hyphens<br>");
-                    errorsWithForm = true;
-                }
-                if (!reName.test(lastName)){
-                    document.getElementById("lastName").style.border = "red solid 3px";
-                    document.getElementById("errorMsg").innerHTML += ("Last name must be less than 50 characters and consist of letters, spaces, and hyphens<br>");
-                    errorsWithForm = true;
-                }
-                var reEmail = /^[a-zA-Z0-9_.-]{1,50}[@][a-zA-Z0-9_.-]{2,50}$/;
-                if(!reEmail.test(emailAddress) || emailAddress.length > 50){
-                    document.getElementById("emailAddress").style.border = "red solid 3px";
-                    document.getElementById("errorMsg").innerHTML += ("Email valid inputs contain letters, numbers, hypens, periods, underscores, and ONE @ symbol, and no longer than 50 characters<br>");
-                    errorsWithForm = true;
-                }
-                var reAge = /^(1[7-9]|2[0-9])$/;
-                if(!reAge.test(age)){
-                    document.getElementById("age").style.border = "red solid 3px";
-                    document.getElementById("errorMsg").innerHTML += ("Age must be between 17 and 29<br>");
+                if (password==""){
+                    document.getElementById("password").style.border = "maroon solid 3px";
+                    document.getElementById("errorMsg").innerHTML += ("Password is required<br>");
                     errorsWithForm = true;
                 }
                 return errorsWithForm;
@@ -62,20 +24,17 @@
         </script>
     </head>
     <body>
-        <h1>OpenFridge:</h1>
-        <h2>Your Portable and Personal Cookbook!</h2>
         <img src="primary_logo.png"/><br>
         <a href="index.html"><button>Home</button></a>
         <a href="register.html"><button>Register</button></a>
         <script src="script.js"></script>
     </body>
-    <form action="demo.php" method="post" onsubmit="return !Validate_Info_Form_Data()">
-        <label for="username">Username:</label><br>
+    <form method="post" onsubmit="return !Validate_Info_Form_Data()">
+        <br><br><label for="username">Username:</label><br>
         <input type="text" id="username" name="username"><br>
         <label for="password">Password:</label><br>
         <input type="password" id="password" name="password"><br>
         <input type="submit" value="Login">
-
     </form>
-    <p id="errorMsg" style="color:red;"></p>
+    <p id="errorMsg" style="color: red;"></p>
 </html>
