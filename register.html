@@ -2,59 +2,55 @@
 <html>
     <head>
         <title>OpenFridge | Register</title>
-        <link rel="stylesheet" href="csl.css">
-        <audio autoplay>
-            <source src="song.mp3" type="audio/mpeg">
-        </audio>
+        <link rel="stylesheet" href="OF.css">
         <script>
             function Validate_Info_Form_Data(){
                 var errorsWithForm = false;
                 let firstName = document.getElementById("firstName").value;
                 let lastName = document.getElementById("lastName").value;
-                let emailAddress = document.getElementById("emailAddress").value;
-                let age = document.getElementById("age").value;
+                let username = document.getElementById("username").value;
+                let password = document.getElementById("password").value;
                 document.getElementById("errorMsg").innerHTML = ""
                 if (firstName==""){
-                    document.getElementById("firstName").style.border = "red solid 3px";
+                    document.getElementById("firstName").style.border = "maroon solid 3px";
                     document.getElementById("errorMsg").innerHTML += ("First name is a required field<br>");
                     errorsWithForm = true;
                 }
                 if (lastName==""){
-                    document.getElementById("lastName").style.border = "red solid 3px";
+                    document.getElementById("lastName").style.border = "maroon solid 3px";
                     document.getElementById("errorMsg").innerHTML += ("Last name is a required field<br>");
                     errorsWithForm = true;
                 }
-                if (emailAddress==""){
-                    document.getElementById("emailAddress").style.border = "red solid 3px";
-                    document.getElementById("errorMsg").innerHTML += ("Email address is a required field<br>");
+                if (username==""){
+                    document.getElementById("username").style.border = "maroon solid 3px";
+                    document.getElementById("errorMsg").innerHTML += ("Username is required<br>");
                     errorsWithForm = true;
                 }
-                if (age==""){
-                    document.getElementById("age").style.border = "red solid 3px";
-                    document.getElementById("errorMsg").innerHTML += ("Age is a required field<br>");
+                if (password==""){
+                    document.getElementById("password").style.border = "maroon solid 3px";
+                    document.getElementById("errorMsg").innerHTML += ("Password is required<br>");
                     errorsWithForm = true;
                 }
                 var reName = /^[a-zA-Z\s\-]{1,50}$/;
                 if (!reName.test(firstName)){
-                    document.getElementById("firstName").style.border = "red solid 3px";
-                    document.getElementById("errorMsg").innerHTML += ("First name must be less than 50 characters and consist of letters, spaces, and hyphens<br>");
+                    document.getElementById("firstName").style.border = "maroon solid 3px";
+                    document.getElementById("errorMsg").innerHTML += ("First name must be less than 50 characters and consist only of letters, spaces, and hyphens<br>");
                     errorsWithForm = true;
                 }
                 if (!reName.test(lastName)){
-                    document.getElementById("lastName").style.border = "red solid 3px";
-                    document.getElementById("errorMsg").innerHTML += ("Last name must be less than 50 characters and consist of letters, spaces, and hyphens<br>");
+                    document.getElementById("lastName").style.border = "maroon solid 3px";
+                    document.getElementById("errorMsg").innerHTML += ("Last name must be less than 50 characters and consist only of letters, spaces, and hyphens<br>");
                     errorsWithForm = true;
                 }
-                var reEmail = /^[a-zA-Z0-9_.-]{1,50}[@][a-zA-Z0-9_.-]{2,50}$/;
-                if(!reEmail.test(emailAddress) || emailAddress.length > 50){
-                    document.getElementById("emailAddress").style.border = "red solid 3px";
-                    document.getElementById("errorMsg").innerHTML += ("Email valid inputs contain letters, numbers, hypens, periods, underscores, and ONE @ symbol, and no longer than 50 characters<br>");
+                var reUsername = /^[a-zA-Z0-9_]{1,50}$/;
+                if(!reUsername.test(username) || username.length > 50){
+                    document.getElementById("username").style.border = "maroon solid 3px";
+                    document.getElementById("errorMsg").innerHTML += ("Username valid inputs contain letters, numbers, and underscores, and no longer than 50 characters<br>");
                     errorsWithForm = true;
                 }
-                var reAge = /^(1[7-9]|2[0-9])$/;
-                if(!reAge.test(age)){
-                    document.getElementById("age").style.border = "red solid 3px";
-                    document.getElementById("errorMsg").innerHTML += ("Age must be between 17 and 29<br>");
+                if(password.length > 50 || password.length < 8){
+                    document.getElementById("password").style.border = "maroon solid 3px";
+                    document.getElementById("errorMsg").innerHTML += ("Password must be between 8 and 50 characters long<br>");
                     errorsWithForm = true;
                 }
                 return errorsWithForm;
@@ -62,31 +58,21 @@
         </script>
     </head>
     <body>
-        <h1>Cadet Service Learning Program</h1>
-        <img src="csl-logo.jpg"/><br>
-        <a href="index.html"><button>CSL Intro</button></a>
-        <a href="partners.html"><button>Service Partners</button></a>
-        <a href="volunteer.html"><button>Volunteer Info</button></a>
-        <h2>Volunteer Information</h2>
+        <img src="primary_logo.png"/><br>
+        <a href="index.html"><button>Home</button></a>
+        <a href="login.html"><button>Login</button></a>
         <script src="script.js"></script>
     </body>
-    <form action="demo.php" method="post" onsubmit="return !Validate_Info_Form_Data()">
+    <form method="post" onsubmit="return !Validate_Info_Form_Data()">
         <label for="firstName">First name:</label><br>
         <input type="text" id="firstName" name="firstName"><br>
         <label for="lastName">Last name:</label><br>
         <input type="text" id="lastName" name="lastName"><br>
-        <label for="emailAddress">Email address:</label><br>
-        <input type="text" id="emailAddress" name="emailAddress"><br>
-        <label for="age">Age:</label><br>
-        <input type="text" id="age" name="age"><br>
-        <p>Gender:</p>
-        <input type="radio" id="male" name="gender" value="male" checked>
-        <label for="male">Male</label><br>
-        <input type="radio" id="female" name="gender" value="female">
-        <label for="female">Female</label><br><br>
-        <input type="checkbox" id="carAccess" name="carAccess" value="carAccess">
-        <label for="carAccess">I have access to a car</label><br><br>
-        <input type="submit" value="Submit">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="password">Password:</label><br>
+        <input type="text" id="password" name="password"><br>
+        <input type="submit" value="Register">
     </form>
     <p id="errorMsg" style="color:red;"></p>
 </html>

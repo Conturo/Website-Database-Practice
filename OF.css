@@ -18,7 +18,7 @@ button{
 
 button:hover{
     background-color: #004d3d;
-    border: #2E3532 1px;
+    border: 1px solid white;
     color: #fff6e7;
     padding: 15px 32px;
     text-align: center;
