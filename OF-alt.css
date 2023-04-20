@@ -1,18 +1,18 @@
 table, td, th{
-    border: 1px solid white;
+    border: 1px solid #fff6e7;
     border-collapse: collapse;
 }
 body {
     font-family: gill sans, sans-serif;
     padding-left: 20px;
 
-    background-color: darkgrey;
-    color: white;
+    background-color: #fff6e7;
+    color: #004d3d;
 }
 button{
-    background-color: white;
-    border: darkgray solid 1px;
-    color: navy;
+    background-color: #fff6e7;
+    border: #fff6e7 1px;
+    color: #004d3d;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -20,9 +20,9 @@ button{
     font-size: 16px;
 }
 button:hover{
-    color: white;
-    border:navy solid 1px;
-    background: navy;
+    color: #fff6e7;
+    border:#004d3d 1px;
+    background: #004d3d;
 }
 img {
     width: 35%;
