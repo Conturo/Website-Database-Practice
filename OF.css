@@ -31,7 +31,4 @@ img {
     width: 35%;
     align-items: center;
 }
-table, td, th{
-    border: #2E3532 1px;
-    border-collapse: collapse;
-}
+

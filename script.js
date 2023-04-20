@@ -16,15 +16,14 @@ addStyleSheet({
     'crossorigin': 'anonymous'
 });
 
-
 function toggleCSS() {
   var button = document.getElementById('cssToggleButton');
   if ('fas fa-toggle-off' == button.className) {
     button.classList.replace('fa-toggle-off', 'fa-toggle-on');
-    addStyleSheet({'href': 'csl-alt.css', 'rel': 'stylesheet'});
+    addStyleSheet({'href': 'OF-alt.css', 'rel': 'stylesheet'});
   } else {
     button.classList.replace('fa-toggle-on', 'fa-toggle-off');
-    addStyleSheet({'href': 'csl.css', 'rel': 'stylesheet'});
+    addStyleSheet({'href': 'OF.css', 'rel': 'stylesheet'});
   }
 }
 
