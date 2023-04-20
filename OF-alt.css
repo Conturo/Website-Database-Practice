@@ -1,12 +1,7 @@
-table, td, th{
-    border: 1px solid #fff6e7;
-    border-collapse: collapse;
-}
+
 body {
     font-family: gill sans, sans-serif;
-    padding-left: 20px;
-
-    background-color: #fff6e7;
+    background-color: #7ea16b;
     color: #004d3d;
 }
 button{
