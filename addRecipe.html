@@ -7,8 +7,9 @@
     </head>
     <body>
         <img src="logoCrop.png"/><br>
-        <a href="index.html"><button>Home</button></a>
-        <a href="addRecipe.html"><button>Add Recipe</button></a>
+        <a href="index.html"><button>Logout</button></a>
+        <a href="user.html"><button>Search</button></a>
+        <a href="remRecipe.html"><button>Remove Recipe</button></a>
         <form method="post">
             <br><br>
             <label for="recipeName">Recipe name:</label><br>
@@ -19,9 +20,11 @@
             <input type="text" id="difficulty" name="difficulty"><br>
             <label for="cuisine">Cuisine:</label><br>
             <input type="text" id="cuisine" name="cuisine"><br>
-            <label for="ingredients">Ingredient:</label><br>
-            <input type="text" id="ingredients" name="ingredients"><br><br>
-            <input type="submit" name="submit" value="Search">
+            <label for="ingredients">Ingredients (comma delimited):</label><br>
+            <input type="text" id="ingredients" name="ingredients"><br>
+            <label for="cuisine">Appliances Required (comma delimited):</label><br>
+            <input type="text" id="appliances" name="appliances"><br><br>
+            <input type="submit" name="submit" value="Add">
         </form>
         <script src="script.js"></script>
     </body>
