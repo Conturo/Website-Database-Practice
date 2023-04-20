@@ -1,0 +1,31 @@
+table, td, th{
+    border: 1px solid white;
+    border-collapse: collapse;
+}
+body {
+    font-family: gill sans, sans-serif;
+    padding-left: 20px;
+
+    background-color: darkgrey;
+    color: white;
+}
+button{
+    background-color: white;
+    border: darkgray solid 1px;
+    color: navy;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+button:hover{
+    color: white;
+    border:navy solid 1px;
+    background: navy;
+}
+img {
+    padding-left: 95px;
+    width: 35%;
+}
+
