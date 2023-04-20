@@ -1,11 +1,9 @@
 function addStyleSheet(properties) {
   var head = document.getElementsByTagName('head')[0];
-
   var link = document.createElement('link');
   for (key in properties) {
     link[key] = properties[key];
   }
-
   head.appendChild(link);
 }
 
