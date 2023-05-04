@@ -5,7 +5,7 @@ body {
     text-align: center;
 }
 
-button{
+button.big{
     background-color: #fff6e7;
     border: 0px solid #fff6e7;
     color: #004d3d;
@@ -16,15 +16,16 @@ button{
     font-size: 20px;
 }
 
-button[type="submit"], input[type="submit"]{
-    background-color: #fff6e7;
+
+button[type="submit"], input[type="submit"], button.small{
+    background-color: #fff6e7 !important;
     border: 0px solid #fff6e7;
     color: #004d3d;
-    padding: 5px 8px;
+    padding: 5px 8px !important;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 16px !important;
 }
 
 button:hover{
