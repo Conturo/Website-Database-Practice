@@ -1,4 +1,8 @@
+
 <!DOCTYPE html>
+<?php
+    session_start();
+            ?>
 <html>
     <head>
         <title>OpenFridge | Login</title>
@@ -25,10 +29,15 @@
     </head>
     <body>
         <img src="logoCrop.png"/><br>
-        <a href="index.html"><button>Home</button></a>
-        <a href="register.html"><button>Register</button></a>
+        <a href="index.html"><button class="big">Home</button></a>
+        <a href="register.html"><button class="big">Register</button></a>
+        <?php if (isset($_SESSION["error_message"])): ?>
+        <p style="color: red;"><?php echo $_SESSION["error_message"]; ?></p>
+            <?php unset($_SESSION["error_message"]); ?>
+            <?php endif; ?>
+
     </body>
-    <form method="post" onsubmit="return !Validate_Info_Form_Data()" action="user.html">
+    <form method="post" onsubmit="return !Validate_Info_Form_Data()" action="authenticate.php">
         <br><br><label for="username">Username:</label><br>
         <input type="text" id="username" name="username"><br>
         <label for="password">Password:</label><br>
@@ -36,4 +45,5 @@
         <input type="submit" value="Login">
     </form>
     <p id="errorMsg" style="color: red;"></p>
+    <p id="reject"></p>
 </html>
