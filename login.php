@@ -40,5 +40,5 @@
         <input type="password" id="password" name="password"><br><br>
         <input type="submit" value="Login">
     </form>
-    <p style="color: red;"><?php if (isset($_SESSION["error_message"])) {echo $_SESSION["error_message"]; }?></p>
+    <p style="color: red;"><?php if (isset($_SESSION["error_message"])) {echo $_SESSION["error_message"]; unset($_SESSION["error_message"]); }?></p>
 </html>
