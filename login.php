@@ -29,7 +29,7 @@
     </head>
     <body>
         <img src="logoCrop.png"/><br>
-        <a href="index.html"><button class="big">Home</button></a>
+        <a href="logout.php"><button class="big">Home</button></a>
         <a href="register.php"><button class="big">Register</button></a>
 
     </body>
