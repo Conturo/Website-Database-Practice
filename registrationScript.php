@@ -12,13 +12,13 @@ $connectionString = "host=$host port=$port dbname=$db user=$user password=$passw
 $connection = pg_connect($connectionString);
 
 pg_prepare($connection, "checkUserAvailable", "SELECT * FROM Users WHERE username = $1");
-pg_prepare($connection, "userInsert", "INSERT INTO Users (username, password_hash, firstName, lastName) VALUES ($1, $2, $3, $4)");
+pg_prepare($connection, "userInsert", "INSERT INTO Users (username, password_hash, first_name, last_name) VALUES ($1, $2, $3, $4)");
 
 $args = array($_POST["username"], password_hash($_POST["password"], PASSWORD_DEFAULT), $_POST["firstName"], $_POST["lastName"]);
 
 $result = pg_execute($connection, "checkUserAvailable", array($_POST["username"]));
 
-if (!strcmp(pg_fetch_result($result, 0, 0), $_POST["username"])) {
+if (!strcmp(pg_fetch_result($result, 0, 1), $_POST["username"])) {
     $_SESSION["error_message"] = "Username Already Taken";
     $location = $location = dirname($_SERVER["PHP_SELF"]);
     header("Location: $location/register.php");
