@@ -60,7 +60,7 @@
     <body>
         <img src="logoCrop.png"/><br>
         <a href="index.html"><button class="big">Home</button></a>
-        <a href="login.html"><button class="big">Login</button></a>
+        <a href="login.php"><button class="big">Login</button></a>
     </body>
     <form method="post" onsubmit="return !Validate_Info_Form_Data()">
         <br><br><label for="firstName">First name:</label><br>

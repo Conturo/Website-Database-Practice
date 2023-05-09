@@ -1,44 +1,53 @@
 <?php
-  session_start();
-  // Replace these values with your database credentials
-  $host = "localhost";
-  $port = "5432";
-  $dbname = "final_website";
-  $user = "student";
-  $password = "CompSci364";
+session_start();
 
-  // Connect to the PostgreSQL database
-  $connection_string = "host=$host port=$port dbname=$dbname user=$user password=$password";
-  $connection = pg_connect($connection_string);
-  $statement = pg_prepare($connection, "user_password", "SELECT password_hash ".
-                                      "FROM Users ".
-                                      "WHERE username = $1;");
-  $error = false;
-  $username = $_POST["username"];
-  $result = pg_execute($connection, "user_password", array($username));
-  if (pg_num_rows($result) > 0) {
-    // Get the password hash from the query result
-    $row = pg_fetch_assoc($result);
-    $password_hash = $row["password_hash"];
+$host = "localhost";
+$port = "5432";
+$user = "student";
+$password = "CompSci364";
+$db = "student";
+
+if (!isset($_SESSION["username"]) && isset($_POST["username"]) && isset($_POST["password"])) {
+
+  $_SESSION["error_message"] = "";
+
+  $connectionString = "host=$host port=$port dbname=$db user=$user password=$password";
+
+  $connection = pg_connect($connectionString);
+
+  pg_prepare($connection, "unameQuery", "SELECT password_hash ".
+                                                  "FROM Users ".
+                                                  "WHERE username = $1;");
+
+  $result = pg_execute($connection, "unameQuery", array($_POST["username"]));
+
+  if (!$result) {
+      echo "Error";
+  } else if (pg_numrows($result) < 1) {
+      echo "Username Not Found!";
+  }else {
+    $passwordHash = pg_fetch_result($result, 0, 0);
   }
-  if (password_verify($_POST["password"], $password_hash)){
-    $_SESSION["username"] = $_POST["username"];
+
+  if (password_verify($_POST["password"], $passwordHash)){
+      $_SESSION["username"] = $_POST["username"];
   }
-  $location = dirname($_SERVER["PHP_SELF"]);
-  // Close the database connection
-  if (isset($_SESSION["username"])) { // authenticated
-    if (isset($_REQUEST["redirect"])) {
-      $location = $_REQUEST["redirect"];
+}
+
+if (isset($_SESSION["username"])) {
+    if (isset($_SESSION["redirect_requested"])) {
+      $location = dirname($_SERVER["PHP_SELF"])."/".$_SESSION["redirect_requested"];
+      unset($_SESSION["redirect_requested"]);
+    } else {
+      $location = dirname($_SERVER["PHP_SELF"])."/user.php";
     }
   
-    // redirect to requested page
-    header("Location: $location/user.html");
+    header("Location: $location");
   }
   else{
     $_SESSION["error_message"] = "Incorrect username or password";
-    header("Location: $location/login.html");
-    $error = true;
+    $location = dirname($_SERVER["PHP_SELF"]);
+    header("Location: $location/login.php");
   }
 
   pg_close($connection);
- ?>

@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (!isset($_SESSION["username"])) {
+  $location = dirname($_SERVER["PHP_SELF"]);
+  $_SESSION["redirect_requested"] = "advancedSearch.php";
+  header("Location: $location/login.php");
+}
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,10 +16,10 @@
     </head>
     <body>
         <img src="logoCrop.png"/><br>
-        <a href="index.html"><button class="big">Logout</button></a>
-        <a href="user.html"><button class="big">Search</button></a><br><br>
-        <a href="addRecipe.html"><button class="big">Add Recipe</button></a>
-        <a href="remRecipe.html"><button class="big">Remove Recipe</button></a>
+        <a href="logout.php"><button class="big">Logout</button></a>
+        <a href="user.php"><button class="big">Search</button></a><br><br>
+        <a href="addRecipe.php"><button class="big">Add Recipe</button></a>
+        <a href="remRecipe.php"><button class="big">Remove Recipe</button></a>
         <form method="post">
             <br><br>
             <label for="recipeName">Recipe name:</label><br>
