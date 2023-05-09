@@ -51,3 +51,5 @@ if (isset($_SESSION["username"])) {
   }
 
   pg_close($connection);
+
+  ?>
