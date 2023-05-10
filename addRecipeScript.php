@@ -85,6 +85,9 @@ if (pg_num_rows($result) > 0) {
     #   Difficulty
     pg_prepare($connection, "userRecipeRating", "INSERT INTO Users_Recipes_Ratings (user_id, recipe_id, rating) VALUES ($1, $2, $3)");
     $result = pg_execute($connection, "userRecipeRating", array($userId, $recipeId, $_POST["difficulty"]));
+
+    $location = $location = dirname($_SERVER["PHP_SELF"]);
+    header("Location: $location/addRecipe.php");
 }
 
 pg_close($connection);
