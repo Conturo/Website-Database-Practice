@@ -20,7 +20,7 @@ if (!isset($_SESSION["username"])) {
         <a href="user.php"><button class="big">Search</button></a><br><br>
         <a href="addRecipe.php"><button class="big">Add Recipe</button></a>
         <a href="remRecipe.php"><button class="big">Remove Recipe</button></a>
-        <form method="post">
+        <form method="post" action="basicSearchScript.php">
             <br><br>
             <label for="keyword">Keyword:</label><br>
             <input type="text" id="keyword" name="keyword"><br><br>
