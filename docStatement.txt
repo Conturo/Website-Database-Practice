@@ -5,3 +5,4 @@ To check syntax for running a php script from an html form we used:             
 To check SQL syntax for automatically numbering ids we used:                    https://chartio.com/resources/tutorials/how-to-define-an-auto-increment-primary-key-in-postgresql/
 To check php syntax for splitting strings on a delimiter we used:               https://www.geeksforgeeks.org/php-explode-function/
 Checked how to echo php data into a table in HTML using:                        https://www.geeksforgeeks.org/how-to-display-string-values-within-a-table-using-php/
+Checked syntax of for each loops to itterate through php arrays:                https://www.w3schools.com/php/php_looping_foreach.asp
