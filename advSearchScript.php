@@ -17,7 +17,7 @@
     $cuisine = $_POST['cuisine'];
     $ingredient = $_POST['ingredients'];
     
-    $sql = "SELECT DISTINCT recipe_name,meal_type,recipe_url,ROUND(AVG(rating),2) AS average_rating FROM recipes NATURAL JOIN appliance_recipes NATURAL JOIN cuisine_recipes NATURAL JOIN ingredient_recipes WHERE 1=1";
+    $sql = "SELECT DISTINCT recipe_name,meal_type,recipe_url,ROUND(AVG(rating),2) AS average_rating FROM recipes NATURAL JOIN appliance_recipes NATURAL JOIN cuisine_recipes NATURAL JOIN ingredient_recipes NATURAL JOIN users_recipes_ratings WHERE 1=1";
     if (!empty($recipeName)) {
         $sql .= " AND recipe_name ILIKE '%" . pg_escape_string($recipeName) . "%'";
     }
