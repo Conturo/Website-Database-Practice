@@ -28,8 +28,8 @@ if (pg_num_rows($result) > 0) {
     $userId = (int) (pg_fetch_result($result, 0, 0));
 
     #   recipes
-    pg_prepare($connection, "recipeInsert", "INSERT INTO Recipes (author_id, recipe_name, meal_type) VALUES ($1, $2, $3)");
-    $result = pg_execute($connection, "recipeInsert", array($userId, $_POST["recipeName"], $_POST["difficulty"]));
+    pg_prepare($connection, "recipeInsert", "INSERT INTO Recipes (author_id, recipe_name, recipe_url, meal_type) VALUES ($1, $2, $3, $4)");
+    $result = pg_execute($connection, "recipeInsert", array($userId, $_POST["recipeName"], $_POST["url"], $_POST["mealType"]));
 
     #   cuisine
     pg_prepare($connection, "cuisineInsert", "INSERT INTO Cuisine (cuisine_type) VALUES ($1)");

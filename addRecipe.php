@@ -25,8 +25,10 @@ if (!isset($_SESSION["username"])) {
             <br><br>
             <label for="recipeName">Recipe name:</label><br>
             <input type="text" id="recipeName" name="recipeName"><br>
-            <label for="difficulty">Difficulty:</label><br>
-            <input type="text" id="difficulty" name="difficulty"><br>
+            <label for="url">URL:</label><br>
+            <input type="text" id="url" name="url"><br>
+            <label for="mealType">Meal Type (Breakfast, Lunch, Dinner):</label><br>
+            <input type="text" id="mealType" name="mealType"><br>
             <label for="cuisine">Cuisine:</label><br>
             <input type="text" id="cuisine" name="cuisine"><br>
             <label for="ingredients">Ingredients (comma delimited):</label><br>
