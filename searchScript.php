@@ -14,7 +14,7 @@
     $connection = pg_connect($connectionString);
 
     $search = "%".$_POST["keyword"]."%";
-    pg_prepare($connection, "searchQuery", "SELECT DISTINCT recipe_name,meal_type,recipe_url FROM recipes NATURAL JOIN appliance_recipes NATURAL JOIN cuisine_recipes NATURAL JOIN ingredient_recipes WHERE recipe_name ILIKE $1 OR meal_type ILIKE $1 OR appliance_name ILIKE $1 OR cuisine_type ILIKE $1 OR ingredient_name ILIKE $1;");
+    pg_prepare($connection, "searchQuery", "SELECT DISTINCT recipe_name,meal_type,recipe_url,ROUND(AVG(rating),2) AS average_rating FROM recipes NATURAL JOIN appliance_recipes NATURAL JOIN cuisine_recipes NATURAL JOIN ingredient_recipes NATURAL JOIN users_recipes_ratings WHERE recipe_name ILIKE $1 OR meal_type ILIKE $1 OR appliance_name ILIKE $1 OR cuisine_type ILIKE $1 OR ingredient_name ILIKE $1 GROUP BY recipe_name, meal_type, recipe_url;");
 
     $result = pg_execute($connection, "searchQuery", array($search));
     $tableString = "";
@@ -25,7 +25,7 @@
             $twodarray[$row] = $row_data;
             $row++;
         }
-        $tableString = "<table>\n<tr><th>Recipe Name</th><th>Meal</th><th>URL</th></tr>\n";
+        $tableString = "<table>\n<tr><th>Recipe Name</th><th>Meal</th><th>URL</th><th>Avg Rating</th></tr>\n";
 
         foreach ($twodarray as $row) {
             $tableString .= "<tr>";
