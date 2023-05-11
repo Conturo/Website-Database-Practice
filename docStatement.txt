@@ -1,0 +1,6 @@
+For Postgres SQL Database commands we used the doccumentation on PHP's webpage: https://www.php.net/manual/en/ref.pgsql.php
+For hashing passwords to test before adding registration functionality we used: https://phppasswordhash.com/
+Also referenced php documentation for password hashing in php:                  https://www.php.net/manual/en/function.password-hash.php
+To check syntax for running a php script from an html form we used:             https://www.geeksforgeeks.org/how-to-call-php-function-on-the-click-of-a-button/
+To check SQL syntax for automatically numbering ids we used:                    https://chartio.com/resources/tutorials/how-to-define-an-auto-increment-primary-key-in-postgresql/
+To check php syntax for splitting strings on a delimiter we used:               https://www.geeksforgeeks.org/php-explode-function/
