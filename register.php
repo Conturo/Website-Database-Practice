@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -62,7 +66,7 @@
         <a href="index.html"><button class="big">Home</button></a>
         <a href="login.php"><button class="big">Login</button></a>
     </body>
-    <form method="post" onsubmit="return !Validate_Info_Form_Data()">
+    <form method="post" onsubmit="return !Validate_Info_Form_Data()" action="registrationScript.php">
         <br><br><label for="firstName">First name:</label><br>
         <input type="text" id="firstName" name="firstName"><br>
         <label for="lastName">Last name:</label><br>
@@ -70,8 +74,9 @@
         <label for="username">Username:</label><br>
         <input type="text" id="username" name="username"><br>
         <label for="password">Password:</label><br>
-        <input type="text" id="password" name="password"><br><br>
+        <input type="password" id="password" name="password"><br><br>
         <input type="submit" value="Register">
     </form>
-    <p id="errorMsg" style="color:red;"></p>
+    <p style="color: red;" id = "errorMsg"></p>
+    <p style="color: red;"><?php if (isset($_SESSION["error_message"])) {echo $_SESSION["error_message"]; unset($_SESSION["error_message"]); }?></p>
 </html>

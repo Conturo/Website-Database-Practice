@@ -23,7 +23,7 @@ if (!isset($_SESSION["username"]) && isset($_POST["username"]) && isset($_POST["
 
   if (!$result) {
       echo "Error";
-  } else if (pg_numrows($result) < 1) {
+  } else if (pg_num_rows($result) < 1) {
       echo "Username Not Found!";
   }else {
     $passwordHash = pg_fetch_result($result, 0, 0);
