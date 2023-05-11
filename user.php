@@ -38,6 +38,6 @@ if (!isset($_SESSION["username"])) {
             margin-right: auto;
 		        }
 	      </style>
-        <?php if(isset($_SESSION["recipes"])){echo $_SESSION["recipes"];} ?>
+        <?php if(isset($_SESSION["recipes"])){echo $_SESSION["recipes"]; unset($_SESSION["recipes"]);} ?>
     </body>
 </html>
