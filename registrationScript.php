@@ -12,9 +12,18 @@ $connectionString = "host=$host port=$port dbname=$db user=$user password=$passw
 $connection = pg_connect($connectionString);
 
 pg_prepare($connection, "checkUserAvailable", "SELECT * FROM Users WHERE username = $1");
-pg_prepare($connection, "userInsert", "INSERT INTO Users (username, password_hash, first_name, last_name) VALUES ($1, $2, $3, $4)");
+pg_prepare($connection, "checkUserIDAvailable", "SELECT * FROM Users WHERE user_id = $1");
+pg_prepare($connection, "userInsert", "INSERT INTO Users (user_id, username, password_hash, first_name, last_name) VALUES ($1, $2, $3, $4, $5)");
 
-$args = array($_POST["username"], password_hash($_POST["password"], PASSWORD_DEFAULT), $_POST["firstName"], $_POST["lastName"]);
+$rand_id = rand(1, 100000000);
+
+$args = array($rand_id, $_POST["username"], password_hash($_POST["password"], PASSWORD_DEFAULT), $_POST["firstName"], $_POST["lastName"]);
+$result = pg_execute($connection, "checkUserIDAvailable", $rand_id);
+
+while (pg_num_rows($result) != 0) {
+    $rand_id = rand(1, 100000000);
+    $result = pg_execute($connection, "checkUserIDAvailable", $rand_id);
+}
 
 $result = pg_execute($connection, "checkUserAvailable", array($_POST["username"]));
 

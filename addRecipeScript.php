@@ -14,8 +14,19 @@ $connection = pg_connect($connectionString);
 
 pg_prepare($connection, "checkExistingRecipies", "SELECT * FROM Recipes ".
                                                   "WHERE recipe_name = $1");
+pg_prepare($connection, "checkRceipeIDAvailable", "SELECT * FROM Users WHERE user_id = $1");
+
+$rand_id = rand(1, 100000000);
+
+$result = pg_execute($connection, "checkRecipeIDAvailable", $rand_id);
+
+while (pg_num_rows($result) != 0) {
+    $rand_id = rand(1, 100000000);
+    $result = pg_execute($connection, "checkRecipeIDAvailable", $rand_id);
+}
 
 $result = pg_execute($connection, "checkExistingRecipies", array($_POST["recipeName"]));
+
 
 if (pg_num_rows($result) > 0) {
     $_SESSION["error_message"] = "Recipe Name Already Taken";
@@ -28,8 +39,8 @@ if (pg_num_rows($result) > 0) {
     $userId = (int) (pg_fetch_result($result, 0, 0));
 
     #   recipes
-    pg_prepare($connection, "recipeInsert", "INSERT INTO Recipes (author_id, recipe_name, recipe_url, meal_type) VALUES ($1, $2, $3, $4)");
-    $result = pg_execute($connection, "recipeInsert", array($userId, $_POST["recipeName"], $_POST["url"], $_POST["mealType"]));
+    pg_prepare($connection, "recipeInsert", "INSERT INTO Recipes (recipe_id, author_id, recipe_name, recipe_url, meal_type) VALUES ($1, $2, $3, $4, $5)");
+    $result = pg_execute($connection, "recipeInsert", array($rand_id, $userId, $_POST["recipeName"], $_POST["url"], $_POST["mealType"]));
 
     #   cuisine
     pg_prepare($connection, "cuisineInsert", "INSERT INTO Cuisine (cuisine_type) VALUES ($1)");
