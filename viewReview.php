@@ -2,7 +2,7 @@
 session_start();
 if (!isset($_SESSION["username"])) {
   $location = dirname($_SERVER["PHP_SELF"]);
-  $_SESSION["redirect_requested"] = "remRecipe.php";
+  $_SESSION["redirect_requested"] = "user.php";
   header("Location: $location/login.php");
 }
 ?>
@@ -10,7 +10,7 @@ if (!isset($_SESSION["username"])) {
 <!DOCTYPE html>
 <html>
     <head>
-      <title>OpenFridge | Remove Recipe</title>
+      <title>OpenFridge | Search</title>
       <link rel="stylesheet" href="OF.css">
 
     </head>
@@ -23,14 +23,22 @@ if (!isset($_SESSION["username"])) {
         <a href="logout.php"><button class="big" action="logout.php">Logout</button></a>
         <a href="user.php"><button class="big">Search</button></a>
 
-        <form method="post" action="removeRecipeScript.php">
+        <form method="post" action="viewReviewScript.php">
             <br><br>
-            <label for="recipeName">Recipe name:</label><br>
-            <input type="text" id="recipeName" name="recipeName"><br>
-            <label for="author">Author name:</label><br>
-            <input type="text" id="author" name="author"><br><br>
-            <input type="submit" name="submit" value="Remove">
+            <label for="recipeSearch">Recipe name:</label><br>
+            <input type="text" id="recipeSearch" name="recipeSearch"><br><br>
+            <input type="submit" name="submit" value="Search">
         </form>
-        <p style="color: red;"><?php if (isset($_SESSION["error_message"])) {echo $_SESSION["error_message"]; unset($_SESSION["error_message"]); }?></p>
+        <br><br>
+        <style>
+          table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+            margin-left: auto;
+            margin-right: auto;
+		        }
+	      </style>
+        <?php if(isset($_SESSION["reviews"])){echo $_SESSION["reviews"]; unset($_SESSION["reviews"]);} ?>
     </body>
 </html>

@@ -16,25 +16,35 @@
     $authorName = $_POST['author'];
     $cuisine = $_POST['cuisine'];
     $ingredient = $_POST['ingredients'];
-    
-    $sql = "SELECT DISTINCT recipe_name,meal_type,recipe_url,ROUND(AVG(rating),2) AS average_rating FROM recipes NATURAL JOIN appliance_recipes NATURAL JOIN cuisine_recipes NATURAL JOIN ingredient_recipes NATURAL JOIN users_recipes_ratings WHERE 1=1";
+
+    $sql = "SELECT DISTINCT recipe_name, meal_type, recipe_url, ROUND(AVG(rating), 2) AS average_rating FROM recipes NATURAL JOIN appliance_recipes NATURAL JOIN cuisine_recipes NATURAL JOIN ingredient_recipes NATURAL JOIN users_recipes_ratings WHERE 1=1";
+    $params = array();
     if (!empty($recipeName)) {
-        $sql .= " AND recipe_name ILIKE '%" . pg_escape_string($recipeName) . "%'";
+        $sql .= " AND recipe_name ILIKE $1";
+        $params[] = '%'.pg_escape_string($recipeName).'%';
     }
-    
+
     if (!empty($authorName)) {
-        $sql .= " AND author_name ILIKE '%" . pg_escape_string($authorName) . "%'";
+        $sql .= " AND author_name ILIKE $2";
+        $params[] = '%'.pg_escape_string($authorName).'%';
     }
-    
+
     if (!empty($cuisine)) {
-        $sql .= " AND cuisine_type ILIKE '%" . pg_escape_string($cuisine) . "%'";
+        $sql .= " AND cuisine_type ILIKE $3";
+        $params[] = '%'.pg_escape_string($cuisine).'%';
     }
-    
+
     if (!empty($ingredient)) {
-        $sql .= " AND ingredient_name ILIKE '%" . pg_escape_string($ingredient) . "%'";
+        $sql .= " AND ingredient_name ILIKE $4";
+        $params[] = '%'.pg_escape_string($ingredient).'%';
     }
-    $sql .= "GROUP BY recipe_name,meal_type,recipe_url;";
-    $result = pg_query($connection, $sql);
+
+    $sql .= " GROUP BY recipe_name, meal_type, recipe_url;";
+
+    $stmt = pg_prepare($connection, "search_recipes", $sql);
+    $result = pg_execute($connection, "search_recipes", $params);
+
+    //$result = pg_query($connection, $sql);
     error_log($sql,0);
     $tableString = "";
     if (pg_num_rows($result) > 0) {
@@ -44,12 +54,12 @@
             $twodarray[$row] = $row_data;
             $row++;
         }
-        $tableString = "<table>\n<tr><th>Recipe Name</th><th>Meal</th><th>URL</th></tr>\n";
+        $tableString = "<table>\n<tr><th>Recipe Name</th><th>Meal</th><th>URL</th><th>Avg Rating</th></tr>\n";
 
         foreach ($twodarray as $row) {
             $tableString .= "<tr>";
             foreach ($row as $cell) {
-                $tableString .= "<td>" . $cell . "</td>";
+                $tableString .= "<td>".$cell."</td>";
             }
             $tableString .= "</tr>\n";
         }
