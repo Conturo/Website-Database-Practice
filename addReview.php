@@ -28,11 +28,11 @@ if (!isset($_SESSION["username"])) {
             <input type="text" id="recipeName" name="recipeName"><br><br>
             <label for="rating">Rating:</label><br>
             <select id="rating" name="rating">
-                <option value="one">1</option>
-                <option value="two">2</option>
-                <option value="three">3</option>
-                <option value="four">4</option>
-                <option value="five">5</option>
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
             </select><br><br>
             <label for="review">Review:</label><br>
             <input type="text" id="review" name="review"><br><br>

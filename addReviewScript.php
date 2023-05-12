@@ -23,7 +23,7 @@ $connection = pg_connect($connectionString);
 
     #   Rating
     pg_prepare($connection, "userRecipeRating", "INSERT INTO Users_Recipes_Ratings (user_id, recipe_id, rating) VALUES ($1, $2, $3)");
-    $result = pg_execute($connection, "userRecipeRating", array($userId, $recipeId, (int)$_POST["rating"]));
+    $result = pg_execute($connection, "userRecipeRating", array($userId, $recipeId, (int)($_POST["rating"])));
 
     #   Review
     pg_prepare($connection, "userRecipeReview", "INSERT INTO Users_Recipes_Reviews (user_id, recipe_id, review_text) VALUES ($1, $2, $3)");
